@@ -17,7 +17,7 @@ public class TransacaoServiceImpl implements TransacaoService {
 	}	
 	
 	@Override
-	public Cartao atualizarSaldo(Cartao cartao, Long saldo) {
+	public Cartao atualizarSaldo(Cartao cartao, Double saldo) {
 		cartao.setSaldo(saldo);
 		transacaoRepository.save(cartao);
 		return null;

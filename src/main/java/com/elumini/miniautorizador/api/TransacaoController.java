@@ -1,4 +1,4 @@
-package com.elumini.miniautorizador.controller;
+package com.elumini.miniautorizador.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,25 +8,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.elumini.miniautorizador.facade.AutorizadorFacade;
-import com.elumini.miniautorizador.model.Cartao;
-import com.elumini.miniautorizador.service.CartaoService;
+import com.elumini.miniautorizador.facade.TransacaoFacade;
+import com.elumini.miniautorizador.model.Transacao;
 
 @RestController
-@RequestMapping("/cartoes")
+@RequestMapping("/transacoes")
 public class TransacaoController {
 	//@Autowired AutorizadorFacade autorizadorFacade;
 	
-	@Autowired CartaoService cartaoService;
+	@Autowired TransacaoFacade transacaoFacade;
     
     @PostMapping
-    public ResponseEntity<Cartao> criarCartao(@RequestBody Cartao cartao) {
+    public ResponseEntity<String> efetuarTransacao(@RequestBody Transacao transacao) {    	
     	try {
-    		cartaoService.criarCartao(cartao);
-    		return new ResponseEntity<Cartao>(cartao, HttpStatus.CREATED);    	
+    		return new ResponseEntity<>(transacaoFacade.efetuarTransacao(transacao), HttpStatus.CREATED);    	
     	}
     	catch(Exception e) {
-    		return new ResponseEntity<Cartao>(cartao, HttpStatus.UNPROCESSABLE_ENTITY);    	
+    		return new ResponseEntity<>(transacaoFacade.efetuarTransacao(transacao), HttpStatus.UNPROCESSABLE_ENTITY);    	
     	}
     		
     }

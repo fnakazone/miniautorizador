@@ -7,5 +7,5 @@ import com.elumini.miniautorizador.model.Cartao;
 
 @Repository
 public interface CartaoRepository extends JpaRepository<Cartao, String> {
-	public Cartao findCartaoByNumeroCartao(String numeroCartao);
+	public Cartao findCartaoByNumeroCartao(Long numeroCartao);
 }

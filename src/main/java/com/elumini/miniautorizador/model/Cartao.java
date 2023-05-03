@@ -19,7 +19,7 @@ public class Cartao {
 	private Long numeroCartao;
 	
 	@JsonIgnore
-	private Long saldo;	
+	private Double saldo;	
 	private int senha;
 
 	public int getSenha() {
@@ -34,10 +34,10 @@ public class Cartao {
 	public void setSenha(int senha) {
 		this.senha = senha;
 	}
-	public Long getSaldo() {
+	public Double getSaldo() {
 		return saldo;
 	}
-	public void setSaldo(Long saldo) {
+	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
 	
