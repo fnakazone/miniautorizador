@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import com.elumini.miniautorizador.model.Transacao;
 import com.elumini.miniautorizador.service.CartaoService;
 import com.elumini.miniautorizador.service.TransacaoService;
-import jakarta.transaction.Transactional;
 
 
 @Component
@@ -20,7 +19,6 @@ public class TransacaoFacade {
     this.transacaoService = transacaoService;
   }
   
-  @Transactional
   public String efetuarTransacao(Transacao transacao) {
 	  
 	String validacao = validarTransacao(transacao);

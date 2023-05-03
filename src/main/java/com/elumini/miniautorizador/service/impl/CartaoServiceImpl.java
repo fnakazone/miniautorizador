@@ -1,9 +1,14 @@
 package com.elumini.miniautorizador.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.mongodb.core.ExecutableFindOperation.ExecutableFind;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.elumini.miniautorizador.model.Cartao;
@@ -27,8 +32,8 @@ public class CartaoServiceImpl implements CartaoService {
   @Override
   public Cartao criarCartao(Cartao cartao) {
 	  cartao.setSaldo(saldoPadrao);
-	  return cartaoRepository.save(cartao);
-  }
+	  return cartaoRepository.insert(cartao);
+  }  
 
   @Override
   public Cartao buscarCartao(Long numeroCartao) {
@@ -37,6 +42,11 @@ public class CartaoServiceImpl implements CartaoService {
         .orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado."));
 	  return cartao;
   }
+  
+  @Override
+  public List<Cartao> buscarTodosCartoes() {
+	  return cartaoRepository.findAll();
+  }  
 
   @Override
   public String atualizarSaldo(Long numeroCartao, Double valor) {

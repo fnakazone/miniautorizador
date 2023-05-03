@@ -1,11 +1,12 @@
 package com.elumini.miniautorizador.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import com.elumini.miniautorizador.model.Cartao;
 
-@Repository
-public interface CartaoRepository extends JpaRepository<Cartao, String> {
-	public Cartao findCartaoByNumeroCartao(Long numeroCartao);
+public interface CartaoRepository extends MongoRepository<Cartao, String> {
+	
+	@Query("{'numeroCartao': ?0}")
+	Cartao findCartaoByNumeroCartao(Long numeroCartao);
 }
